@@ -101,7 +101,7 @@ public class SuggestionButtonRendererBase extends HeaderResourcesRendererBase
             script.append("var qtipNum = jQuery('#" + forceId.replace(":", "\\\\:") + SuggestionRendererBase.HIDDEN_NAME_COMP
                     + "',window.parent.document).data('hasqtip'); jQuery('#qtip-'+qtipNum,window.parent.document).hide();");
         }
-        script.append("if(typeof onSelectCallback == 'function'){onSelectCallback(this)}");
+        script.append("if(typeof onSelectCallback == 'function'){onSelectCallback(this,'"+ forceId + SuggestionRendererBase.HIDDEN_NAME_COMP+"')}");
         script.append("};");
         //
 
