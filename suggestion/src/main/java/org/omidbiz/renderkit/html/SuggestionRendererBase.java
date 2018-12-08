@@ -47,6 +47,10 @@ public class SuggestionRendererBase extends HeaderResourcesRendererBase
         Map requestParams = external.getRequestParameterMap();
         UISuggestion sugesstion = (UISuggestion) component;
         sugesstion.setClientParametForceId((String) component.getAttributes().get("clientParametForceId"));
+        sugesstion.setWidth((Integer) component.getAttributes().get("width"));
+        sugesstion.setHeight((Integer) component.getAttributes().get("height"));
+        sugesstion.setStyleClass((String) component.getAttributes().get("styleClass"));
+        sugesstion.setStyle((String) component.getAttributes().get("style"));
         String componentId = (String) sugesstion.getForceId();
         String hiddenComponentId = componentId + HIDDEN_COMP;
         String valueName = (String) requestParams.get(componentId + HIDDEN_NAME_COMP);
