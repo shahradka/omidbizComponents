@@ -156,6 +156,7 @@ public class SuggestionRendererBase extends HeaderResourcesRendererBase
         getUtils().writeAttribute(writer, "type", "text");
         getUtils().writeAttribute(writer, "id", componentId + HIDDEN_NAME_COMP);
         getUtils().writeAttribute(writer, "name", componentId + HIDDEN_NAME_COMP);
+        getUtils().writeAttribute(writer, "autocomplete", "off");
         Object styleClass = suggestion.getStyleClass();
         if (styleClass != null)
             getUtils().writeAttribute(writer, "class", String.valueOf(styleClass));
