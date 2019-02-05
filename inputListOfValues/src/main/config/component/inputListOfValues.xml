@@ -241,7 +241,13 @@
 			</description>
 			<defaultvalue>"85%"</defaultvalue>
 		</property>
-		
+		<property>
+			<name>top</name>
+			<classname>java.lang.String</classname>
+			<description>
+					
+			</description>
+		</property>
 		<property>
 			<name>iframe</name>
 			<classname>boolean</classname>

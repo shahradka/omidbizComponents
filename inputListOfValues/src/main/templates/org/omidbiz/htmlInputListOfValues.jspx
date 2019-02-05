@@ -48,6 +48,7 @@
 	
 	<c:set var="width" value="#{component.attributes['width']}"/>
 	<c:set var="height" value="#{component.attributes['height']}"/>
+	<c:set var="top" value="#{component.attributes['top']}"/>
 	<c:set var="iframe" value="#{component.attributes['iframe']}"/>
 	
 	<c:set var="onOpen" value="#{component.attributes['onOpen']}"/>
@@ -68,30 +69,57 @@
 		<jsp:scriptlet>
 <![CDATA[ 
 			String type = (String) variables.getVariable("type");
+			String top = (String) variables.getVariable("top");
 			String autocompleteUrl = (String) variables.getVariable("autocompleteUrl");
 			Boolean sendRequestToServer = (Boolean) variables.getVariable("sendRequestToServer");
 ]]>
 </jsp:scriptlet>
 	
-<jsp:scriptlet><![CDATA[ if (! "".equals(type) && type.equalsIgnoreCase("dialog") ) { ]]></jsp:scriptlet>
+<jsp:scriptlet><![CDATA[ if (top != null){ ]]></jsp:scriptlet>
+	<jsp:scriptlet><![CDATA[ if (! "".equals(type) && type.equalsIgnoreCase("dialog") ) { ]]></jsp:scriptlet>
+	
+	<script type="text/javascript">
+	 
+	jQuery(document).ready(function(){	
+		jQuery(".#{objectName}lovClass").colorbox({width:"80%", height:"80%",top:"6%", iframe:true});
+		jQuery('a[rel=rel#{objectName}]').colorbox(jQuery.extend({
+			onOpen:function(){ #{onOpen} },
+			onLoad:function(){ #{onLoad} },
+			onComplete:function(){ #{onComplete} },
+			onCleanup:function(){ #{onCleanup} },
+			onClosed:function(){ #{onClosed} },
+			width:'#{width}', height:'#{height}',top:'#{top}', iframe:#{iframe}, fastIframe:#{fastIframe}, overlayClose:#{overlayClose}
+			}, Richfaces.colorboxControl.getParameters()));
+		
+		
+	});
+	</script>
+	<jsp:scriptlet><![CDATA[ } ]]></jsp:scriptlet>
+	
+	<jsp:scriptlet>
+		<![CDATA[ } else { ]]>
+	</jsp:scriptlet>
+		<jsp:scriptlet><![CDATA[ if (! "".equals(type) && type.equalsIgnoreCase("dialog") ) { ]]></jsp:scriptlet>
+	
+		<script type="text/javascript">
+		 
+		jQuery(document).ready(function(){	
+			jQuery(".#{objectName}lovClass").colorbox({width:"80%", height:"80%", iframe:true});
+			jQuery('a[rel=rel#{objectName}]').colorbox(jQuery.extend({
+				onOpen:function(){ #{onOpen} },
+				onLoad:function(){ #{onLoad} },
+				onComplete:function(){ #{onComplete} },
+				onCleanup:function(){ #{onCleanup} },
+				onClosed:function(){ #{onClosed} },
+				width:'#{width}', height:'#{height}', iframe:#{iframe}, fastIframe:#{fastIframe}, overlayClose:#{overlayClose}
+				}, Richfaces.colorboxControl.getParameters()));
+			
+			
+		});
+		</script>
+		<jsp:scriptlet><![CDATA[ } ]]></jsp:scriptlet>
+	<jsp:scriptlet><![CDATA[ } ]]></jsp:scriptlet>
 
-<script type="text/javascript">
- 
-jQuery(document).ready(function(){	
-	jQuery(".#{objectName}lovClass").colorbox({width:"80%", height:"80%", iframe:true});
-	jQuery('a[rel=rel#{objectName}]').colorbox(jQuery.extend({
-		onOpen:function(){ #{onOpen} },
-		onLoad:function(){ #{onLoad} },
-		onComplete:function(){ #{onComplete} },
-		onCleanup:function(){ #{onCleanup} },
-		onClosed:function(){ #{onClosed} },
-		width:'#{width}', height:'#{height}', iframe:#{iframe}, fastIframe:#{fastIframe}, overlayClose:#{overlayClose}
-		}, Richfaces.colorboxControl.getParameters()));
-	
-	
-});
-</script>
-<jsp:scriptlet><![CDATA[ } ]]></jsp:scriptlet>
 
 <jsp:scriptlet><![CDATA[ if (autocompleteUrl != null && !"".equals(autocompleteUrl.trim()) ) { ]]></jsp:scriptlet>
 
